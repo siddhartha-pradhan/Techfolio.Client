@@ -1045,6 +1045,7 @@ export class GenericService {
             bio: 'Passionate developer with expertise in .NET ecosystem',
             githubUrl: 'https://github.com/siddhartha-pradhan',
             linkedinUrl: 'https://www.linkedin.com/in/siddhartha-pradhan-ix/',
+            dateOfBirth: '2002-09-13',
         };
     }
     //#endregion

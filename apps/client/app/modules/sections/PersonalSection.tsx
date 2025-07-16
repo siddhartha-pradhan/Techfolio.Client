@@ -2,8 +2,10 @@ import React from 'react';
 import { Button } from '@/components/ui/Button';
 import { GitHub } from '@/application/models/GitHub';
 import { Hero } from '@/application/models/dota/Hero';
+import { getFullAge } from '@/utility/GenericUtility';
 import { State } from '@/application/models/dota/State';
 import { Linkedin, Terminal, Trophy } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
 
 type PersonalSectionProps = {
     gameState: State;
@@ -23,9 +25,9 @@ const PersonalSection = ({
     setShowDotaPanel,
 }: PersonalSectionProps) => {
     return (
-        <section className="min-h-screen flex items-center pt-20 lg:pt-24">
+        <section className="min-h-screen flex items-center pt-20 lg:pt-24 pb-10 lg:pb-14">
             <div className="container mx-auto px-4 lg:px-6">
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-8">
                     <div className="space-y-6 lg:space-y-8">
                         <div className="space-y-4 lg:space-y-6">
                             <div
@@ -55,18 +57,16 @@ const PersonalSection = ({
                                     <span style={{ color: selectedHero.theme.secondary }}>
                                         FullStackDeveloper
                                     </span>{' '}
-                                    <span style={{ color: selectedHero.theme.primary }}>
-                                        extends
-                                    </span>{' '}
+                                    <span style={{ color: selectedHero.theme.primary }}>:</span>{' '}
                                     <span style={{ color: selectedHero.theme.secondary }}>
                                         DOTA2Player
                                     </span>
                                 </div>
                                 <div className="text-gray-500">{'{'}</div>
                                 <div className="ml-4">
-                                    level:{' '}
+                                    runTime:{' '}
                                     <span style={{ color: selectedHero.theme.accent }}>
-                                        {selectedHero.stats.level}
+                                        {getFullAge(personalInformation.dateOfBirth)}
                                     </span>
                                     ;
                                 </div>
@@ -94,31 +94,7 @@ const PersonalSection = ({
                                 <div className="text-gray-500">{'}'}</div>
                             </div>
 
-                            <div
-                                className="p-4 rounded-lg border-2"
-                                style={{
-                                    borderColor: selectedHero.theme.primary,
-                                    backgroundColor: isDarkMode
-                                        ? 'rgba(0,0,0,0.3)'
-                                        : 'rgba(255,255,255,0.3)',
-                                }}
-                            >
-                                <div
-                                    className="text-xs font-bold mb-2"
-                                    style={{ color: selectedHero.theme.primary }}
-                                >
-                                    HERO QUOTE:
-                                </div>
-                                <div
-                                    className="text-sm italic"
-                                    style={{ color: selectedHero.theme.accent }}
-                                >
-                                    "{selectedHero.devQuote}"
-                                </div>
-                            </div>
-
-                            {/* Hero Stats Display */}
-                            <div className="grid grid-cols-3 gap-4 text-center">
+                            <div className="grid grid-cols-3 gap-4 text-center pt-4">
                                 <div
                                     className="p-3 rounded-lg border"
                                     style={{
@@ -159,7 +135,6 @@ const PersonalSection = ({
                         </div>
                     </div>
 
-                    {/* Enhanced Stats Display */}
                     <div className="relative">
                         <div
                             className="border-2 rounded-lg overflow-hidden shadow-2xl"
@@ -321,6 +296,23 @@ const PersonalSection = ({
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div
+                    className="p-4 rounded-lg border-2"
+                    style={{
+                        borderColor: selectedHero.theme.primary,
+                        backgroundColor: isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.3)',
+                    }}
+                >
+                    <div
+                        className="text-xs font-bold mb-2"
+                        style={{ color: selectedHero.theme.primary }}
+                    >
+                        HERO QUOTE:
+                    </div>
+                    <div className="text-sm italic" style={{ color: selectedHero.theme.accent }}>
+                        "{selectedHero.devQuote}"
                     </div>
                 </div>
             </div>

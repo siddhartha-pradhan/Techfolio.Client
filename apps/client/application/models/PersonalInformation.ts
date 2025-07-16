@@ -7,4 +7,5 @@ interface PersonalInformation {
     location: string;
     githubUrl: string;
     linkedinUrl: string;
+    dateOfBirth: string;
 }
