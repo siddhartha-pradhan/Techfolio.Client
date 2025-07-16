@@ -9,7 +9,8 @@
         "dev": "turbo run dev",
         "build": "turbo run build",
         "lint": "turbo run lint",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "test": "echo 'No tests available here :)'"
     },
     "keywords": [],
     "author": "",
