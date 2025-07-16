@@ -1,18 +1,18 @@
 services:
-  portfolio:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: siddhartha-portfolio
-    ports:
-      - "8000:3000"
-    environment:
-      - NODE_ENV=production
-      - NEXT_TELEMETRY_DISABLED=1
-    restart: unless-stopped
-    networks:
-      - portfolio-network
+    portfolio:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: siddhartha-portfolio
+        ports:
+            - '8000:3000'
+        environment:
+            - NODE_ENV=production
+            - NEXT_TELEMETRY_DISABLED=1
+        restart: unless-stopped
+        networks:
+            - portfolio-network
 
 networks:
-  portfolio-network:
-    driver: bridge
+    portfolio-network:
+        driver: bridge

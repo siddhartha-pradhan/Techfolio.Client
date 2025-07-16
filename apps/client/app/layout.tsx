@@ -11,9 +11,7 @@ export const metadata: Metadata = {
     authors: [{ name: 'Siddhartha' }],
     creator: 'Siddhartha',
     icons: {
-        icon: [
-            { url: '/favicon.svg', sizes: '32x32' },
-        ]
+        icon: [{ url: '/favicon.svg', sizes: '32x32' }],
     },
 };
 

@@ -800,7 +800,7 @@ export class GenericService {
                 featured: true,
                 preview: '🧠',
                 difficulty: 'Hard',
-                githubUrl: 'http://connectcms.com.np/',
+                githubUrl: 'https://connectcms.com.np/',
                 dotaEquivalent:
                     "Rubick's Spell Steal – flexible, layered, and powerful when used right",
             },
