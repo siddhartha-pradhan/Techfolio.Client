@@ -98,21 +98,21 @@ const ContactSection = ({ isDarkMode, selectedHero, personalInformation }: Conta
                                         {[
                                             {
                                                 label: 'AVAILABILITY:',
-                                                value: 'LOOKING_FOR_PARTY',
+                                                value: 'LOOKING FOR PARTY',
                                             },
-                                            { label: 'RESPONSE_TIME:', value: '< 24_HOURS' },
+                                            { label: 'RESPONSE TIME:', value: '< 24 HOURS' },
                                             { label: 'TIMEZONE:', value: 'UTC+5:45' },
                                             {
-                                                label: 'PREFERRED_ROLE:',
+                                                label: 'PREFERRED ROLE:',
                                                 value: 'CARRY/SUPPORT',
                                             },
-                                            { label: 'TECH_STACK:', value: '.NET_ECOSYSTEM' },
+                                            { label: 'TECH STACK:', value: '.NET / TS  ECOSYSTEM' },
                                             {
-                                                label: 'CURRENT_HERO:',
+                                                label: 'CURRENT HERO:',
                                                 value: selectedHero.name.toUpperCase(),
                                             },
-                                            { label: 'DOTA_RANK:', value: 'ANCIENT' },
-                                            { label: 'PARTY_SIZE:', value: '1-5_DEVELOPERS' },
+                                            { label: 'DOTA RANK:', value: 'ANCIENT' },
+                                            { label: 'PARTY SIZE:', value: '1-5 DEVELOPERS' },
                                         ].map((stat) => (
                                             <div key={stat.label} className="flex justify-between">
                                                 <span className="opacity-70">{stat.label}</span>

@@ -21,8 +21,8 @@ const Footer = ({ gameState, selectedHero, isDarkMode, personalInformation }: Fo
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="font-mono text-xs lg:text-sm text-center sm:text-left opacity-70">
                         © {new Date().getFullYear()} {personalInformation.name.toUpperCase()} |{' '}
-                        {selectedHero.name.toUpperCase()} {selectedHero.icon} | LEVEL_
-                        {selectedHero.stats.level} | ANCIENT_RANK | CRAFTED_WITH_PASSION_AND_DOTA
+                        {selectedHero.name.toUpperCase()} {selectedHero.icon} | LEVEL{' '}
+                        {selectedHero.stats.level} | ANCIENT RANK | craftedWithPassionAndDOTA2
                     </div>
                     <div
                         className="font-mono text-xs lg:text-sm"

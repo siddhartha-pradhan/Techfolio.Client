@@ -708,7 +708,7 @@ export class GenericService {
             {
                 id: '1',
                 name: 'SOFTCASH.TREASURY.PORTAL',
-                type: 'FINTECH_PLATFORM',
+                type: 'FINTECH PLATFORM',
                 description:
                     'FX-powered treasury management system with EBICS, multi-currency, and CAMT/PAIN flows',
                 tech: ['.NET 8', 'REACT', 'TYPESCRIPT', 'HANGFIRE', 'EBICS'],
@@ -725,7 +725,7 @@ export class GenericService {
             {
                 id: '5',
                 name: 'AXISBANK.CSR.PLATFORM',
-                type: 'CORPORATE_WEB_APP',
+                type: 'CORPORATE WEB APP',
                 description:
                     'CSR proposal, fund flow and disbursement system for Axis Bank’s partners',
                 tech: ['.NET 6', 'SQL SERVER', 'MVC', 'JQUERY', 'AJAX'],
@@ -741,7 +741,7 @@ export class GenericService {
             {
                 id: '6',
                 name: 'RSOS.SCHOOL.LMS',
-                type: 'EDTECH_PORTAL',
+                type: 'EDTECH PORTAL',
                 description:
                     'LMS portal for Rajasthan State Open Schools with upload and learning modules',
                 tech: ['.NET 8', 'MVC', 'SQL SERVER'],
@@ -758,7 +758,7 @@ export class GenericService {
             {
                 id: '7',
                 name: 'MYSECONDTOOL.EDUPORTAL',
-                type: 'LEGACY_MIGRATION',
+                type: 'LEGACY MIGRATION',
                 description:
                     'Migrated legacy .NET app to modern .NET 6 with performance improvements',
                 tech: ['.NET 6', 'LINQ', 'REACT', 'AWS', 'EF CORE'],
@@ -774,7 +774,7 @@ export class GenericService {
             {
                 id: '8',
                 name: 'CLOCKBEE.SAAS.PLATFORM',
-                type: 'HR_MANAGEMENT_SOLUTION',
+                type: 'HR SOLUTIONS',
                 description:
                     'Multi-tenant payroll, shift, timesheet & leave manager with real-time FCM alerts',
                 tech: ['.NET 8', 'REACT', 'FCM', 'EF CORE', 'POSTGRESQL'],
@@ -790,7 +790,7 @@ export class GenericService {
             {
                 id: '9',
                 name: 'CONNECTCMS.TRAINING.PLATFORM',
-                type: 'BLAZOR_WASM_APP',
+                type: 'BLAZOR WASM',
                 description:
                     'Blazor WebAssembly Training Management System with CI/CD, Docker & Personality Tests',
                 tech: ['BLAZOR', '.NET 8', 'DOCKER', 'GITHUB ACTIONS'],
@@ -948,6 +948,17 @@ export class GenericService {
             },
             {
                 id: '3',
+                name: 'The High Innovations',
+                position: 'Software Engineer',
+                duration: 'Dec 2023 – Sep 2024',
+                description: `Crafted core modules of a POS system, and fortified customer interactions.`,
+                logo: '🛠️',
+                website: 'https://www.thehighinnovations.com',
+                featured: true,
+                dotaGuild: 'Contract Creepwave',
+            },
+            {
+                id: '4',
                 name: 'Innovate Tech',
                 position: '.NET Trainee',
                 duration: 'Sept 2022 – April 2023',
@@ -958,7 +969,7 @@ export class GenericService {
                 dotaGuild: 'Ancient Coders',
             },
             {
-                id: '4',
+                id: '5',
                 name: 'InfoDevelopers',
                 position: '.NET Intern',
                 duration: 'June 2022 – Sept 2022',
