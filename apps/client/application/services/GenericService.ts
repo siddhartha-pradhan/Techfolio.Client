@@ -718,7 +718,7 @@ export class GenericService {
                 featured: true,
                 preview: '💰',
                 difficulty: 'Legendary',
-                githubUrl: 'https://www.softcash.ch/en/',
+                githubUrl: 'https://www.softcash.ch/en',
                 dotaEquivalent:
                     "Techies' Remote Mine Network – high-risk, high-reward orchestration",
             },
@@ -735,7 +735,7 @@ export class GenericService {
                 featured: true,
                 preview: '🏦',
                 difficulty: 'Medium',
-                githubUrl: 'http://axiscsrmitra.microwarecomp.com/',
+                githubUrl: 'http://axiscsrmitra.microwarecomp.com',
                 dotaEquivalent: 'Treant’s Overgrowth – supports wide-scale coverage and visibility',
             },
             {
@@ -751,7 +751,7 @@ export class GenericService {
                 featured: true,
                 preview: '🏫',
                 difficulty: 'Hard',
-                githubUrl: 'https://rsospcp.rajasthan.gov.in/',
+                githubUrl: 'https://rsospcp.rajasthan.gov.in',
                 dotaEquivalent:
                     'Chen’s Hand of God – designed for the masses, resilient under pressure',
             },
@@ -768,7 +768,7 @@ export class GenericService {
                 featured: false,
                 preview: '📚',
                 difficulty: 'Medium',
-                githubUrl: 'https://app.mysecondteacher.com.np/',
+                githubUrl: 'https://app.mysecondteacher.com.np',
                 dotaEquivalent: "Io's Relocate – pulled old systems into modern cloud safely",
             },
             {
@@ -784,7 +784,7 @@ export class GenericService {
                 featured: true,
                 preview: '⏰',
                 difficulty: 'Legendary',
-                githubUrl: 'https://clockbee.app/',
+                githubUrl: 'https://clockbee.app',
                 dotaEquivalent: 'Clockwerk’s Cog Combo – precise, timed, multi-purpose system',
             },
             {
@@ -800,7 +800,7 @@ export class GenericService {
                 featured: true,
                 preview: '🧠',
                 difficulty: 'Hard',
-                githubUrl: 'https://connectcms.com.np/',
+                githubUrl: 'https://connectcms.com.np',
                 dotaEquivalent:
                     "Rubick's Spell Steal – flexible, layered, and powerful when used right",
             },
