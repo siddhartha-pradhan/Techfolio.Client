@@ -1,0 +1,26 @@
+{
+    "name": "@siddhartha/root",
+    "private": true,
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Root Package for Portfolio",
+    "main": "index.js",
+    "scripts": {
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "format": "prettier --write ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.11.0",
+    "devDependencies": {
+        "prettier": "^3.6.2",
+        "turbo": "^2.5.4"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
+}

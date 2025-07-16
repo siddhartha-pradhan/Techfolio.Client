@@ -1,0 +1,16 @@
+{
+    "name": "@siddhartha/siddhartha-api",
+    "version": "1.0.0",
+    "description": "OpenAPI Generated APIs for Portfolio",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc -p tsconfig.json"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.11.0"
+}

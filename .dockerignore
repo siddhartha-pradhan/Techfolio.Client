@@ -1,0 +1,95 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# NextJS
+.next/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Runtime Data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+
+# Dependency Directories
+jspm_packages/
+
+# Optional NPM Cache Directory
+.npm
+
+# Optional ESLint Cache
+.eslintcache
+
+# Microbundle Cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL History
+.node_repl_history
+
+# Output of 'NPM Pack'
+*.tgz
+
+# YARN Integrity File
+.yarn-integrity
+
+# Parcel Bundler Cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# NextJS Build Output
+.next
+
+# NuxtJS Build Output
+.nuxt
+
+# Vuepress Build Output
+.vuepress/dist
+
+# Serverless Directories
+.serverless
+
+# FuseBox Cache
+.fusebox/
+
+# DynamoDB Local Files
+.dynamodb/
+
+# TernJS Port File
+.tern-port
+
+# Stores VSCode Versions Used for Testing VSCode Extensions
+.vscode-test
+
+# Temporary Folders
+tmp/
+temp/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Git
+.git
+.gitignore
