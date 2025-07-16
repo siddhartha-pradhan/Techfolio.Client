@@ -1,18 +1,17 @@
 # Dependencies
-/node_modules
 node_modules/
 
 # JetBrains IDEs
 /.idea
 
 # Next JS and Turbo
-/.next/
-/.turbo/
-/out/
+.next/
+.turbo/
+out/
 
 # Production
-/build
-/dist
+build/
+dist/
 
 # Debug
 npm-debug.log*
