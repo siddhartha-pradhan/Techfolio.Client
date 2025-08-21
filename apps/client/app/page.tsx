@@ -91,7 +91,7 @@ export default function Portfolio() {
 
     //#region Boot Sequence
     useEffect(() => {
-        const timer = setTimeout(() => setIsBooting(false), 2000);
+        const timer = setTimeout(() => setIsBooting(false), 5000);
         return () => clearTimeout(timer);
     }, []);
     //#endregion
