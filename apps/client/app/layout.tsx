@@ -27,22 +27,25 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <head>
-                <title>{metadata.title?.toString() ?? 'Siddhartha'}</title>
-                {/* iOS PWA */}
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-                <meta name="apple-mobile-web-app-title" content="Siddhartha" />
+        <head>
+            <title>{metadata.title?.toString() ?? 'Siddhartha'}</title>
+            {/* iOS PWA */}
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+            <meta name="apple-mobile-web-app-title" content="Siddhartha"/>
 
-                {/* Microsoft Clarity */}
-                <Script id="ms-clarity" strategy="afterInteractive">
-                    {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            <meta name="theme-color" content="#0b132b" />
+
+            {/* Microsoft Clarity */}
+            <Script id="ms-clarity" strategy="afterInteractive">
+                {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "sg4604jy6p");`}
-                </Script>
-            </head>
-            <body>{children}</body>
+            </Script>
+        </head>
+        <body>{children}</body>
         </html>
     );
 }
