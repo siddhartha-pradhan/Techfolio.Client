@@ -44,7 +44,8 @@ export default withPWA({
         },
         {
             // @ts-ignore
-            urlPattern: ({ request }) => ['script', 'style', 'worker'].includes(request.destination),
+            urlPattern: ({ request }) =>
+                ['script', 'style', 'worker'].includes(request.destination),
             handler: 'StaleWhileRevalidate',
             options: { cacheName: 'assets' },
         },
