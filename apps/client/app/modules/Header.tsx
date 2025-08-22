@@ -41,7 +41,7 @@ const Header = ({
 }: HeaderProps) => {
     return (
         <div
-            className="sticky top-0 z-40 backdrop-blur-sm border-b pt-[env(safe-area-inset-top)]"
+            className="fixed top-0 left-0 right-0 z-40 backdrop-blur-sm border-b pt-[env(safe-area-inset-top)]"
             style={{
                 backgroundColor: isDarkMode ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
                 borderColor: selectedHero.theme.primary,
