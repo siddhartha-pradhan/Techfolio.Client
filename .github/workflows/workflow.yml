@@ -86,11 +86,11 @@ jobs:
                       cd ${{ secrets.REPOSITORY_DIRECTORY }}
                       git pull ${{ secrets.REPOSITORY_SSH }}
 
-                      echo "Environmental Setup for Dockerizing Container"
-                      docker-compose -f docker-compose.yml down
-                      docker-compose -f docker-compose.yml build --no-cache
-                      docker-compose -f docker-compose.yml up -d
+                      echo "Environmental Setup for Dockerizing Container."
+                      docker compose -f docker-compose.yml down
+                      docker compose -f docker-compose.yml build --no-cache
+                      docker compose -f docker-compose.yml up -d
 
-                      echo "Refactoring and Cleanup for Docker Resources"
+                      echo "Refactoring and Cleanup for Docker Resources."
                       docker image prune -af --filter "until=24h"
                       docker system prune -f --volumes

@@ -1,9 +1,11 @@
+name: portfolio
 services:
-    portfolio:
+    portfolio-client:
+        container_name: portfolio-client-production
+        image: affinity/portfolio-client:production
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: siddhartha-portfolio
         ports:
             - '8000:3000'
         environment:
@@ -11,8 +13,8 @@ services:
             - NEXT_TELEMETRY_DISABLED=1
         restart: unless-stopped
         networks:
-            - portfolio-network
+            - portfolio-network-production
 
 networks:
-    portfolio-network:
+    portfolio-network-production:
         driver: bridge
