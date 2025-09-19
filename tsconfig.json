@@ -5,7 +5,7 @@
             "path": "./apps/client"
         },
         {
-            "path": "./packages/siddhartha-api"
+            "path": "./packages/portfolio-api"
         }
     ]
 }
