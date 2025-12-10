@@ -1,8 +1,8 @@
 'use client';
 
+import React, { JSX, useRef } from 'react';
 import { Play } from 'lucide-react';
 import { useInView } from 'framer-motion';
-import React, { JSX, useRef } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -27,14 +27,14 @@ const ProjectsSection = ({
     getProjectIcon,
 }: ProjectsSectionProps) => {
     const sectionRef = useRef<HTMLElement | null>(null);
-    const isInView = useInView(sectionRef, {
-        amount: 0.4,
+    const inView = useInView(sectionRef, {
         once: true,
+        margin: '-20% 0px -20% 0px',
     });
 
     return (
-        <section ref={sectionRef} className="py-16 lg:py-20">
-            <RampageOverlay trigger={isInView} />
+        <section ref={sectionRef} className="py-16 lg:py-20 relative">
+            <RampageOverlay trigger={inView} />
 
             <div className="container mx-auto px-4 lg:px-6">
                 <div className="mb-12 lg:mb-16 text-center">

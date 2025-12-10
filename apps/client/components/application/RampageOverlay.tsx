@@ -11,7 +11,7 @@ const RampageOverlay = ({ trigger }: Props) => {
     useEffect(() => {
         if (trigger) {
             setShow(true);
-            const t = setTimeout(() => setShow(false), 1400);
+            const t = setTimeout(() => setShow(false), 5000);
             return () => clearTimeout(t);
         }
     }, [trigger]);
@@ -44,7 +44,7 @@ const RampageOverlay = ({ trigger }: Props) => {
                         }}
                         className="relative text-5xl md:text-7xl font-black text-red-500 drop-shadow-[0_0_30px_rgba(248,113,113,0.9)]"
                     >
-                        RAMPAGE!!
+                        RAMPAGE!!!
                         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-xs md:text-sm tracking-[0.3em] text-red-200/80">
                             PROJECT.STREAK
                         </div>

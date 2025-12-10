@@ -21,7 +21,8 @@ const SkillsSection = ({ selectedHero, isDarkMode, featuredSkills }: SkillSectio
                             {selectedHero.name.toUpperCase()}.TECHNOLOGIA
                         </span>
                         <span className="block lg:hidden text-3xl leading-tight">
-                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span> <br />
+                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>
+                            <br />
                             {selectedHero.name.toUpperCase()}
                             <br />
                             <span>.</span>

@@ -71,4 +71,3 @@ jobs:
                   channelId: pr-${{ github.event.number }}
                   expires: 7d
                   entryPoint: ./Techfolio.Client
-

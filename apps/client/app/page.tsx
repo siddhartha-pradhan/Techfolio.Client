@@ -17,6 +17,7 @@ import HeroSelectorModal from '@/app/modules/modals/HeroSelectorModal';
 import ThemeToggleButton from '@/app/modules/toggles/ThemeToggleButton';
 import ExperiencesSection from '@/app/modules/sections/ExperiencesSection';
 import AbilityDetailsModal from '@/app/modules/modals/AbilityDetailsModal';
+import SurpriseLootSection from '@/app/modules/sections/SurpriseLootSection';
 import TerminalConsoleModal from '@/app/modules/modals/TerminalConsoleModal';
 import AchievementsSection from '@/app/modules/sections/AchievementsSection';
 import DotaPanelToggleButton from '@/app/modules/toggles/DotaPanelToggleButton';
@@ -32,19 +33,25 @@ import { Ability } from '@/application/models/dota/Ability';
 import { Achievement } from '@/application/models/Achievement';
 import { MatchHistory } from '@/application/models/dota/MatchHistory';
 import { GenericService } from '@/application/services/GenericService';
-import SurpriseLootSection from '@/app/modules/sections/SurpriseLootSection';
 //#endregion
 
-// Small helper wrapper for scroll-in animations
 const AnimatedSection = ({ children, delay = 0 }: { children: ReactNode; delay?: number }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 40 }}
+    <motion.section
+        initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay }}
+        viewport={{
+            once: true,
+            amount: 0.15,
+            margin: '0px 0px -10% 0px',
+        }}
+        transition={{
+            duration: 0.55,
+            ease: [0.22, 0.61, 0.36, 1],
+            delay,
+        }}
     >
         {children}
-    </motion.div>
+    </motion.section>
 );
 
 export default function Portfolio() {
