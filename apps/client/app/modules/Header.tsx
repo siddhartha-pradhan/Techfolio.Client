@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -47,7 +49,7 @@ const Header = ({
                 borderColor: selectedHero.theme.primary,
             }}
         >
-            <div className="flex items-center justify-between px-4 lg:px-6 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-y-2 px-4 lg:px-6 py-3">
                 <div className="flex items-center gap-3 lg:gap-6 flex-1 min-w-0">
                     <div className="flex gap-2">
                         <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-red-500" />
@@ -55,14 +57,14 @@ const Header = ({
                         <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-green-500" />
                     </div>
 
-                    <div className="hidden sm:flex items-center gap-2 lg:gap-3 flex-1 min-w-0">
+                    <div className="hidden sm:flex flex-col md:flex-row md:items-center gap-1 md:gap-2 flex-1 min-w-0">
                         <span
-                            className="font-bold text-sm lg:text-base"
+                            className="font-bold text-xs sm:text-sm lg:text-base truncate max-w-[180px] sm:max-w-[260px]"
                             style={{ color: selectedHero.theme.primary }}
                         >
                             siddhartha@{selectedHero.id}:~$
                         </span>
-                        <span className="text-sm lg:text-base">
+                        <span className="text-xs sm:text-sm whitespace-nowrap">
                             Level {selectedHero.stats.level} | {gameState.gold}💰
                         </span>
                     </div>
@@ -70,7 +72,7 @@ const Header = ({
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="sm:hidden"
+                        className="sm:hidden ml-auto"
                         style={{ color: selectedHero.theme.primary }}
                         onClick={() => setShowMobileMenu(!isMobileMenuOpen)}
                     >
@@ -82,18 +84,18 @@ const Header = ({
                     </Button>
                 </div>
 
-                <div className="flex items-center gap-2 lg:gap-4">
-                    <div className="hidden md:flex items-center gap-2">
+                <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0">
+                    <div className="hidden md:flex items-center gap-2 max-w-[200px]">
                         <span className="text-lg">{selectedHero.icon}</span>
                         <span
-                            className="text-xs font-bold"
+                            className="text-xs font-bold truncate"
                             style={{ color: selectedHero.theme.primary }}
                         >
                             {selectedHero.name}
                         </span>
                         <Badge
                             variant="outline"
-                            className="text-xs"
+                            className="text-xs whitespace-nowrap"
                             style={{
                                 borderColor: selectedHero.theme.primary,
                                 color: selectedHero.theme.primary,
@@ -134,7 +136,7 @@ const Header = ({
                     </Button>
 
                     <div
-                        className="text-xs lg:text-sm font-mono hidden md:block"
+                        className="text-xs lg:text-sm font-mono hidden md:block whitespace-nowrap"
                         style={{ color: selectedHero.theme.primary }}
                     >
                         {date.toLocaleTimeString()} | KTM
@@ -152,9 +154,9 @@ const Header = ({
                         style={{ borderColor: selectedHero.theme.primary }}
                     >
                         <div className="p-4 space-y-3">
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-col gap-1">
                                 <span
-                                    className="font-bold text-sm"
+                                    className="font-bold text-sm truncate"
                                     style={{ color: selectedHero.theme.primary }}
                                 >
                                     siddhartha@{selectedHero.id}:~$
@@ -163,7 +165,7 @@ const Header = ({
                                     Level {selectedHero.stats.level} | {gameState.gold}💰
                                 </span>
                             </div>
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-3">
                                 <div className="flex gap-3">
                                     <Button
                                         variant="ghost"
@@ -201,7 +203,7 @@ const Header = ({
                                 <div className="flex items-center gap-2">
                                     <span className="text-lg">{selectedHero.icon}</span>
                                     <div
-                                        className="text-xs font-mono"
+                                        className="text-xs font-mono whitespace-nowrap"
                                         style={{ color: selectedHero.theme.primary }}
                                     >
                                         {date.toLocaleTimeString()} | KTM

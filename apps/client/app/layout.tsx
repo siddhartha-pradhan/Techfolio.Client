@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Siddhartha',
     description:
-        'Full-stack developer portfolio with DOTA-themed interface featuring projects, skills, and achievements',
+        'Full-Stack Developer Portfolio with DOTA-themed Interface Featuring Projects, Skills, and Achievements',
     generator: 'siddhartha.io',
     keywords: ['developer', 'portfolio', 'full-stack', 'react', 'next.js', 'dota'],
     authors: [{ name: 'Siddhartha' }],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
             { url: '/icons/192x192.png', sizes: '192x192', type: 'image/png' },
             { url: '/icons/512x512.png', sizes: '512x512', type: 'image/png' },
         ],
-        apple: [{ url: '/icons/192x192.png', sizes: '180x180', type: 'image/png' }], // or add /apple-touch-icon.png
+        apple: [{ url: '/icons/192x192.png', sizes: '180x180', type: 'image/png' }],
     },
 };
 

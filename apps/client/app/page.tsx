@@ -1,10 +1,11 @@
 'use client';
 
-import React, { JSX } from 'react';
 import { Code2 } from 'lucide-react';
 import Header from '@/app/modules/Header';
 import Footer from '@/app/modules/Footer';
+import React, { JSX, ReactNode } from 'react';
 import BootScreen from '@/app/modules/BootScreen';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import SkillsSection from '@/app/modules/sections/SkillsSection';
 import DotaPanelModal from '@/app/modules/modals/DotaPanelModal';
 import { useEffect, useState, useCallback, useMemo } from 'react';
@@ -33,18 +34,23 @@ import { MatchHistory } from '@/application/models/dota/MatchHistory';
 import { GenericService } from '@/application/services/GenericService';
 //#endregion
 
+// Small helper wrapper for scroll-in animations
+const AnimatedSection = ({ children, delay = 0 }: { children: ReactNode; delay?: number }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: 'easeOut', delay }}
+    >
+        {children}
+    </motion.div>
+);
+
 export default function Portfolio() {
     //#region State Management
-
-    //#region Date and Time
     const [currentTime, setCurrentTime] = useState(new Date());
-    //#endregion
-
-    //#region Theme and UI States
     const [isDarkMode, setIsDarkMode] = useState(true);
-    //#endregion
 
-    //#region Data Sets and Personal Information
     const [skills] = useState<Skill[]>(GenericService.getSkills());
     const [projects] = useState<Project[]>(GenericService.getProjects());
     const [companies] = useState<Company[]>(GenericService.getCompanies());
@@ -52,23 +58,14 @@ export default function Portfolio() {
     const [personalInformation] = useState<PersonalInformation>(
         GenericService.getPersonalInformation(),
     );
-    //#endregion
 
-    //#region UI Mechanics and Responsive States
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    //#endregion
-
-    //#region Boot Handlers
     const [isBooting, setIsBooting] = useState(true);
-    //#endregion
 
-    //#region Terminal Panel
     const [showTerminal, setShowTerminal] = useState(false);
     const [terminalInput, setTerminalInput] = useState('');
     const [terminalHistory, setTerminalHistory] = useState<string[]>([]);
-    //#endregion
 
-    //#region DOTA Game State and Hero Selection
     const [selectedAbility, setSelectedAbility] = useState<Ability>();
     const [showDotaPanel, setShowDotaPanel] = useState(false);
     const [showHeroSelector, setShowHeroSelector] = useState(false);
@@ -76,27 +73,27 @@ export default function Portfolio() {
     const [gameState, setGameState] = useState<State>(GenericService.getDotaState());
     const [selectedHero, setSelectedHero] = useState<Hero>(GenericService.getDotaHeroes()[0]);
     const [matchHistory] = useState<MatchHistory[]>(GenericService.getRecentDotaMatchHistories());
-    //#endregion
 
-    //#region My Cute Little Hearts
     const [dogs] = useState<Dog[]>(GenericService.getDogs());
     const [showDogsSection, setShowDogsSection] = useState(false);
     //#endregion
 
+    //#region Scroll progress (top progress bar)
+    const { scrollYProgress } = useScroll();
+    const scrollProgress = useSpring(scrollYProgress, {
+        stiffness: 120,
+        damping: 20,
+        restDelta: 0.001,
+    });
     //#endregion
 
-    //#region Memoization and Constants
     const githubStats = useMemo(() => GenericService.getGitHubStats(), []);
-    //#endregion
 
-    //#region Boot Sequence
     useEffect(() => {
         const timer = setTimeout(() => setIsBooting(false), 5000);
         return () => clearTimeout(timer);
     }, []);
-    //#endregion
 
-    //#region Hooks for Data Load
     useEffect(() => {
         const loadData = () => {
             try {
@@ -114,16 +111,12 @@ export default function Portfolio() {
 
         loadData();
     }, []);
-    //#endregion
 
-    //#region Time Intervals
     useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 1000);
         return () => clearInterval(timer);
     }, []);
-    //#endregion
 
-    //#region Game Simulation
     useEffect(() => {
         const timer = setInterval(() => {
             if (gameState.isPlaying) {
@@ -141,9 +134,7 @@ export default function Portfolio() {
 
         return () => clearInterval(timer);
     }, [gameState.isPlaying, selectedHero.stats.maxExperience]);
-    //#endregion
 
-    //#region Memoized Callbacks
     const toggleTheme = useCallback(() => {
         setIsDarkMode(!isDarkMode);
     }, [isDarkMode]);
@@ -206,36 +197,27 @@ export default function Portfolio() {
     );
 
     const getDifficultyColor = useCallback(GenericService.getDifficultyColor, []);
-
     const getRarityColor = useCallback(GenericService.getRarityColor, []);
-
     const getProjectIcon = useCallback((type: string): JSX.Element => {
         const iconFactory = GenericService.getProjectIconMap[type];
         return iconFactory ? iconFactory() : <Code2 className="w-6 h-6" />;
     }, []);
-    //#endregion
 
-    //#region Memoized Filtered Data (via Featured Flags)
     const featuredSkills = useMemo(() => skills.filter((s) => s.featured), [skills]);
     const featuredProjects = useMemo(() => projects.filter((p) => p.featured), [projects]);
     const featuredCompanies = useMemo(() => companies.filter((c) => c.featured), [companies]);
-
     const featuredAchievements = useMemo(
         () => achievements.filter((a) => a.featured),
         [achievements],
     );
-
     const dotaAchievements = useMemo(
         () => achievements.filter((a) => a.type === 'dota'),
         [achievements],
     );
-    //#endregion
 
-    //#region Book Screen
     if (isBooting) {
         return <BootScreen />;
     }
-    //#endregion
 
     return (
         <div
@@ -247,7 +229,15 @@ export default function Portfolio() {
                 color: isDarkMode ? 'white' : '#1a1a1a',
             }}
         >
-            {/* Header Component */}
+            {/* Scroll progress bar */}
+            <motion.div
+                className="fixed top-0 left-0 right-0 h-1 z-50 origin-left"
+                style={{
+                    scaleX: scrollProgress,
+                    backgroundColor: selectedHero.theme.accent,
+                }}
+            />
+
             <Header
                 date={currentTime}
                 gameState={gameState}
@@ -265,7 +255,7 @@ export default function Portfolio() {
                 setShowHeroSelector={setShowHeroSelector}
             />
 
-            {/* DOTA Panel Modal */}
+            {/* Modals */}
             <DotaPanelModal
                 gameState={gameState}
                 matches={matchHistory}
@@ -277,7 +267,6 @@ export default function Portfolio() {
                 setShowDotaPanel={setShowDotaPanel}
             />
 
-            {/* Ability Details Modal */}
             <AbilityDetailsModal
                 selectedHero={selectedHero}
                 showAbilityDetails={showAbilityDetails}
@@ -285,7 +274,6 @@ export default function Portfolio() {
                 setShowAbilityDetails={setShowAbilityDetails}
             />
 
-            {/* Hero Selector Modal */}
             <HeroSelectorModal
                 heroes={GenericService.getDotaHeroes()}
                 selectHero={selectHero}
@@ -294,7 +282,6 @@ export default function Portfolio() {
                 setShowHeroSelector={setShowHeroSelector}
             />
 
-            {/* Terminal Console Modal */}
             <TerminalConsoleModal
                 gameState={gameState}
                 selectedHero={selectedHero}
@@ -306,62 +293,67 @@ export default function Portfolio() {
                 handleTerminalCommand={handleTerminalCommand}
             />
 
-            {/* Dogs Section Modal */}
             <DogSectionModal
                 dogs={dogs}
                 showDogsSection={showDogsSection}
                 setShowDogsSection={setShowDogsSection}
             />
 
-            {/* Personal Details Section */}
-            <PersonalSection
-                gameState={gameState}
-                isDarkMode={isDarkMode}
-                githubStats={githubStats}
-                selectedHero={selectedHero}
-                setShowDotaPanel={setShowDotaPanel}
-                personalInformation={personalInformation}
-            />
+            {/* Sections with scroll-in animations */}
+            <AnimatedSection>
+                <PersonalSection
+                    gameState={gameState}
+                    isDarkMode={isDarkMode}
+                    githubStats={githubStats}
+                    selectedHero={selectedHero}
+                    setShowDotaPanel={setShowDotaPanel}
+                    personalInformation={personalInformation}
+                />
+            </AnimatedSection>
 
-            {/* Achievements Section with DOTA Theme */}
-            <AchievementsSection
-                isDarkMode={isDarkMode}
-                selectedHero={selectedHero}
-                getRarityColor={getRarityColor}
-                featuredAchievements={featuredAchievements}
-            />
+            <AnimatedSection delay={0.05}>
+                <AchievementsSection
+                    isDarkMode={isDarkMode}
+                    selectedHero={selectedHero}
+                    getRarityColor={getRarityColor}
+                    featuredAchievements={featuredAchievements}
+                />
+            </AnimatedSection>
 
-            {/* Skills Section */}
-            <SkillsSection
-                isDarkMode={isDarkMode}
-                selectedHero={selectedHero}
-                featuredSkills={featuredSkills}
-            />
+            <AnimatedSection delay={0.1}>
+                <SkillsSection
+                    isDarkMode={isDarkMode}
+                    selectedHero={selectedHero}
+                    featuredSkills={featuredSkills}
+                />
+            </AnimatedSection>
 
-            {/* Experience Section */}
-            <ExperiencesSection
-                isDarkMode={isDarkMode}
-                selectedHero={selectedHero}
-                companies={featuredCompanies}
-            />
+            <AnimatedSection delay={0.15}>
+                <ExperiencesSection
+                    isDarkMode={isDarkMode}
+                    selectedHero={selectedHero}
+                    companies={featuredCompanies}
+                />
+            </AnimatedSection>
 
-            {/* Projects Section */}
-            <ProjectsSection
-                isDarkMode={isDarkMode}
-                selectedHero={selectedHero}
-                projects={featuredProjects}
-                getProjectIcon={getProjectIcon}
-                getDifficultyColor={getDifficultyColor}
-            />
+            <AnimatedSection delay={0.2}>
+                <ProjectsSection
+                    isDarkMode={isDarkMode}
+                    selectedHero={selectedHero}
+                    projects={featuredProjects}
+                    getProjectIcon={getProjectIcon}
+                    getDifficultyColor={getDifficultyColor}
+                />
+            </AnimatedSection>
 
-            {/* Contact Section */}
-            <ContactSection
-                isDarkMode={isDarkMode}
-                selectedHero={selectedHero}
-                personalInformation={personalInformation}
-            />
+            <AnimatedSection delay={0.25}>
+                <ContactSection
+                    isDarkMode={isDarkMode}
+                    selectedHero={selectedHero}
+                    personalInformation={personalInformation}
+                />
+            </AnimatedSection>
 
-            {/* Footer */}
             <Footer
                 gameState={gameState}
                 isDarkMode={isDarkMode}
@@ -369,14 +361,12 @@ export default function Portfolio() {
                 personalInformation={personalInformation}
             />
 
-            {/* Theme Toggle - Bottom Right */}
             <ThemeToggleButton
                 isDarkMode={isDarkMode}
                 toggleTheme={toggleTheme}
                 selectedHero={selectedHero}
             />
 
-            {/* Floating DOTA Panel Button - Bottom Left */}
             <DotaPanelToggleButton
                 isDarkMode={isDarkMode}
                 selectedHero={selectedHero}

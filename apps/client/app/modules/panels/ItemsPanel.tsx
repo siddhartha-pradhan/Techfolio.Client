@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Flame, Sparkles, Star } from 'lucide-react';

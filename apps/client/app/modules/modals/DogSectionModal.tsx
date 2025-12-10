@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { X } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
@@ -42,11 +44,11 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
 
                         <div className="p-6">
                             <div className="text-center mb-8">
-                                <p className="text-lg opacity-80">
+                                <p className="text-lg opacity-80 text-white">
                                     Meet my wonderful companions who bring joy, love, and endless
                                     entertainment to my life.
                                 </p>
-                                <p className="text-sm opacity-60 mt-2">
+                                <p className="text-sm opacity-60 text-white mt-2">
                                     They're not just pets, they're family members who teach me about
                                     loyalty, unconditional love, and living in the moment.
                                 </p>
@@ -106,9 +108,14 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                 >
                                                     {dog.name}
                                                 </h3>
-                                                <p className="text-sm opacity-70">{dog.breed}</p>
+                                                <p className="text-sm opacity-70 text-white">
+                                                    {dog.breed}
+                                                </p>
                                                 <div className="flex justify-center gap-2 mt-2">
-                                                    <Badge variant="outline" className="text-xs">
+                                                    <Badge
+                                                        variant="outline"
+                                                        className="text-xs text-white"
+                                                    >
                                                         {dog.dateJoined &&
                                                             `Joined ${dog.dateJoined}`}
                                                     </Badge>
@@ -123,7 +130,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                 </div>
                                             </div>
 
-                                            <p className="text-sm opacity-80 mb-4 text-center leading-relaxed">
+                                            <p className="text-sm opacity-80 mb-4 text-center leading-relaxed text-white">
                                                 {dog.description}
                                             </p>
 
@@ -135,7 +142,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                     {dog.personality.map((trait) => (
                                                         <span
                                                             key={trait}
-                                                            className="px-2 py-1 bg-pink-400/20 border border-pink-400/30 rounded text-xs"
+                                                            className="px-2 py-1 bg-pink-400/20 border border-pink-400/30 rounded text-white text-xs"
                                                         >
                                                             {trait}
                                                         </span>
@@ -152,7 +159,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                         (activity, index) => (
                                                             <div
                                                                 key={index}
-                                                                className="text-xs opacity-70"
+                                                                className="text-xs opacity-70 text-white"
                                                             >
                                                                 • {activity}
                                                             </div>
@@ -166,7 +173,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                     <div className="text-xs font-bold mb-1 text-green-400">
                                                         DOTA HERO EQUIVALENT:
                                                     </div>
-                                                    <div className="text-xs opacity-80">
+                                                    <div className="text-xs opacity-80 text-white">
                                                         {dog.dotaHeroEquivalent}
                                                     </div>
                                                 </div>
@@ -176,7 +183,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                                 <div className="text-xs font-bold mb-1 text-yellow-400">
                                                     SPECIAL MEMORY:
                                                 </div>
-                                                <div className="text-xs opacity-80 italic">
+                                                <div className="text-xs opacity-80 text-white italic">
                                                     "{dog.specialMemory}"
                                                 </div>
                                             </div>
@@ -190,7 +197,7 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                     <div className="text-sm font-bold text-pink-400 mb-2">
                                         PACK PHILOSOPHY
                                     </div>
-                                    <div className="text-sm opacity-80 italic">
+                                    <div className="text-sm opacity-80 text-white italic">
                                         "Dogs teach us that the most important things in life aren't
                                         things at all - they're moments of pure joy, unconditional
                                         love, and the simple pleasure of being present with those we

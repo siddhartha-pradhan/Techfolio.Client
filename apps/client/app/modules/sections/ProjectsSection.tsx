@@ -1,3 +1,5 @@
+'use client';
+
 import React, { JSX } from 'react';
 import { Play } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
@@ -49,102 +51,118 @@ const ProjectsSection = ({
                                 ),
                             }}
                         >
+                            {/* LEGENDARY GLOW */}
                             {project.difficulty === 'Legendary' && (
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 animate-pulse" />
                             )}
 
                             <div className="p-6 lg:p-8 relative z-10">
-                                <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-6 gap-4">
-                                    <div className="flex items-center gap-4 flex-1">
+                                {/* --------------------------------------------- */}
+                                {/* ROW 1 — Left: index + icon + name, Right: preview + difficulty */}
+                                {/* --------------------------------------------- */}
+                                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-4">
+                                    {/* LEFT SIDE */}
+                                    <div className="flex items-center gap-3 flex-wrap">
                                         <div
                                             className="text-xl lg:text-2xl font-black"
                                             style={{ color: selectedHero.theme.primary }}
                                         >
                                             {String(index + 1).padStart(2, '0')}
                                         </div>
-                                        <div className="flex items-center gap-3 flex-1">
-                                            <div
-                                                className="p-2 rounded"
+
+                                        <div
+                                            className="p-2 rounded"
+                                            style={{
+                                                backgroundColor: selectedHero.theme.primary + '20',
+                                                color: selectedHero.theme.primary,
+                                            }}
+                                        >
+                                            {getProjectIcon(project.type)}
+                                        </div>
+
+                                        <h3 className="text-xl lg:text-2xl font-black break-all">
+                                            {project.name}
+                                        </h3>
+                                    </div>
+
+                                    {/* RIGHT SIDE */}
+                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                        {project.preview && (
+                                            <div className="text-2xl">{project.preview}</div>
+                                        )}
+
+                                        {project.difficulty && (
+                                            <Badge
+                                                variant="outline"
+                                                className="text-xs"
                                                 style={{
-                                                    backgroundColor:
-                                                        selectedHero.theme.primary + '20',
-                                                    color: selectedHero.theme.primary,
+                                                    borderColor: getDifficultyColor(
+                                                        project.difficulty,
+                                                    ),
+                                                    color: getDifficultyColor(project.difficulty),
                                                 }}
                                             >
-                                                {getProjectIcon(project.type)}
-                                            </div>
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <h3 className="text-xl lg:text-2xl font-black">
-                                                        {project.name}
-                                                    </h3>
-                                                    <div className="text-2xl">
-                                                        {project.preview}
-                                                    </div>
-                                                    {project.difficulty && (
-                                                        <Badge
-                                                            variant="outline"
-                                                            className="text-xs"
-                                                            style={{
-                                                                borderColor: getDifficultyColor(
-                                                                    project.difficulty,
-                                                                ),
-                                                                color: getDifficultyColor(
-                                                                    project.difficulty,
-                                                                ),
-                                                            }}
-                                                        >
-                                                            {project.difficulty}
-                                                        </Badge>
-                                                    )}
-                                                </div>
-                                                <div className="text-xs lg:text-sm opacity-70 mt-1 font-mono">
-                                                    TYPE: {project.type} | LINES: {project.lines} |
-                                                    COMMITS: {project.commits} | STATUS:
-                                                    <span
-                                                        className="ml-1"
-                                                        style={{
-                                                            color: selectedHero.theme.primary,
-                                                        }}
-                                                    >
-                                                        {project.status}
-                                                    </span>
-                                                </div>
-                                                {project.dotaEquivalent && (
-                                                    <div
-                                                        className="text-xs mt-1"
-                                                        style={{
-                                                            color: selectedHero.theme.accent,
-                                                        }}
-                                                    >
-                                                        🎮 DOTA Equivalent: {project.dotaEquivalent}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
+                                                {project.difficulty}
+                                            </Badge>
+                                        )}
                                     </div>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        className="font-bold"
-                                        style={{ color: selectedHero.theme.primary }}
-                                        asChild
-                                    >
-                                        <a
-                                            href={project.githubUrl || '#'}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <Play className="w-4 h-4 mr-2" />
-                                            INSPECT
-                                        </a>
-                                    </Button>
                                 </div>
 
+                                {/* --------------------------------------------- */}
+                                {/* ROW 2 — Left: meta + dotaEquivalent, Right: INSPECT (lg only) */}
+                                {/* --------------------------------------------- */}
+                                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
+                                    {/* LEFT SIDE */}
+
+                                    <div>
+                                        <div className="text-xs lg:text-sm opacity-70 font-mono break-words">
+                                            TYPE: {project.type} | LINES: {project.lines} | COMMITS:{' '}
+                                            {project.commits} | STATUS:
+                                            <span
+                                                className="ml-1"
+                                                style={{ color: selectedHero.theme.primary }}
+                                            >
+                                                {project.status}
+                                            </span>
+                                        </div>
+
+                                        {project.dotaEquivalent && (
+                                            <div
+                                                className="text-xs mt-1"
+                                                style={{ color: selectedHero.theme.accent }}
+                                            >
+                                                🎮 DOTA Equivalent: {project.dotaEquivalent}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* RIGHT SIDE — INSPECT BUTTON */}
+                                    <div className="flex lg:justify-end">
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="font-bold"
+                                            style={{ color: selectedHero.theme.primary }}
+                                            asChild
+                                        >
+                                            <a
+                                                href={project.githubUrl || '#'}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                <Play className="w-4 h-4 mr-2" />
+                                                INSPECT
+                                            </a>
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* DESCRIPTION */}
                                 <p className="mb-6 leading-relaxed text-sm lg:text-base opacity-80">
                                     {project.description}
                                 </p>
 
+                                {/* TECH TAGS */}
                                 <div className="flex flex-wrap gap-2">
                                     {project.tech.map((tech) => (
                                         <span

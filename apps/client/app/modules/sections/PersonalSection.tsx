@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/Button';
 import { GitHub } from '@/application/models/GitHub';
@@ -198,7 +200,7 @@ const PersonalSection = ({
                                         key={stat.label}
                                         className="flex justify-between items-center"
                                     >
-                                        <span className="text-gray-400">
+                                        <span className="dark:text-gray-400">
                                             {stat.label}
                                             {stat.children && ' / ' + stat.children.label}
                                         </span>
@@ -217,7 +219,7 @@ const PersonalSection = ({
                                 ))}
 
                                 <div className="border-t border-gray-700 pt-4 lg:pt-6">
-                                    <div className="text-gray-400 mb-2 lg:mb-3">
+                                    <div className="dark:text-gray-400 mb-2 lg:mb-3">
                                         ULTIMATE ABILITIES:
                                     </div>
                                     <div className="space-y-1">
@@ -237,7 +239,7 @@ const PersonalSection = ({
                                 </div>
 
                                 <div className="border-t border-gray-700 pt-4">
-                                    <div className="text-gray-400 mb-2">EXPERIENCE:</div>
+                                    <div className="dark:text-gray-400 mb-2">EXPERIENCE:</div>
                                     <div className="flex justify-between text-xs mb-1">
                                         <span>{selectedHero.stats.experience}</span>
                                         <span>{selectedHero.stats.maxExperience}</span>

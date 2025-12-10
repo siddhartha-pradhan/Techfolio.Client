@@ -1,3 +1,5 @@
+'use client';
+
 import { MatchHistory } from '@/application/models/dota/MatchHistory';
 import React from 'react';
 import { Hero } from '@/application/models/dota/Hero';

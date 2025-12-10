@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Progress } from '@/components/ui/Progress';
 import { Hero } from '@/application/models/dota/Hero';

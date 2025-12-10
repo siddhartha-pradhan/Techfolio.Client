@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Progress } from '@/components/ui/Progress';
@@ -50,19 +52,23 @@ const HeroSelectorModal = ({
                                     }`}
                                 >
                                     <div className="text-center mb-4">
-                                        <div className="text-4xl mb-2">{hero.icon}</div>
+                                        <div className="text-4xl mb-2 text-white">{hero.icon}</div>
                                         <h3 className="text-xl font-bold text-white">
                                             {hero.name}
                                         </h3>
                                         <p className="text-green-400 text-sm">{hero.title}</p>
                                         <div className="flex justify-center gap-2 mt-2">
                                             <Badge variant="outline" className="text-xs">
-                                                Lv.{hero.stats.level}
+                                                <span className="text-red-400 text-xs">
+                                                    Lv.{hero.stats.level}
+                                                </span>
                                             </Badge>
                                             <Badge variant="outline" className="text-xs">
-                                                {hero.ultimateUnlocked
-                                                    ? 'Ultimate Ready'
-                                                    : 'Ultimate Locked'}
+                                                <span className="text-red-400 text-xs">
+                                                    {hero.ultimateUnlocked
+                                                        ? 'Ultimate Ready'
+                                                        : 'Ultimate Locked'}
+                                                </span>
                                             </Badge>
                                         </div>
                                     </div>
@@ -81,7 +87,7 @@ const HeroSelectorModal = ({
                                             </span>
                                         </div>
                                         <div className="text-xs">
-                                            <div className="flex justify-between mb-1">
+                                            <div className="flex justify-between mb-1 text-white">
                                                 <span>Experience</span>
                                                 <span>
                                                     {hero.stats.experience}/

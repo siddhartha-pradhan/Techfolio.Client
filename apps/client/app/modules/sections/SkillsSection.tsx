@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Hero } from '@/application/models/dota/Hero';
 import { Skill } from '@/application/models/dota/Skill';
@@ -13,10 +15,19 @@ const SkillsSection = ({ selectedHero, isDarkMode, featuredSkills }: SkillSectio
         <section className="py-16 lg:py-20">
             <div className="container mx-auto px-4 lg:px-6">
                 <div className="mb-12 lg:mb-16 text-center">
-                    <h2 className="text-3xl lg:text-4xl font-black mb-4">
-                        <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>{' '}
-                        {selectedHero.name.toUpperCase()}
-                        .TECHNOLOGIA
+                    <h2 className="font-black mb-4">
+                        <span className="hidden lg:block text-4xl">
+                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>{' '}
+                            {selectedHero.name.toUpperCase()}.TECHNOLOGIA
+                        </span>
+                        <span className="block lg:hidden text-3xl leading-tight">
+                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>{' '}
+                            {selectedHero.name.toUpperCase()}
+                            <br />
+                            <span className="ml-6 mb-5">.</span>
+                            <br />
+                            <span className="mt-5 ml-6">TECHNOLOGIA</span>
+                        </span>
                     </h2>
                     <div className="text-sm lg:text-base opacity-70">
                         {selectedHero.description}

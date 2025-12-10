@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 import { Hero } from '@/application/models/dota/Hero';
 import { State } from '@/application/models/dota/State';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -13,6 +15,7 @@ type TerminalConsoleModalProps = {
     setTerminalInput: (input: string) => void;
     handleTerminalCommand: (command: string) => void;
 };
+
 const TerminalConsoleModal = ({
     gameState,
     selectedHero,
@@ -23,6 +26,14 @@ const TerminalConsoleModal = ({
     setTerminalInput,
     handleTerminalCommand,
 }: TerminalConsoleModalProps) => {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [terminalHistory, showTerminal]);
+
     return (
         <AnimatePresence>
             {showTerminal && (
@@ -52,7 +63,7 @@ const TerminalConsoleModal = ({
                                 ×
                             </button>
                         </div>
-                        <div className="flex-1 p-4 overflow-y-auto">
+                        <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto">
                             <div className="space-y-2 text-green-400 text-sm">
                                 <div>
                                     Welcome to Siddhartha's DOTA-Enhanced Interactive Terminal!

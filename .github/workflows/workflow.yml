@@ -1,45 +1,71 @@
 name: Deploy to Firebase Hosting
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+    push:
+        branches:
+            - main
+    pull_request:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Setup PNPM Package Manager
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.11.0
-          run_install: true
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10.11.0
+                  run_install: true
 
-      - name: Build Project via Scripts
-        run: pnpm run build
+            - name: Build Project
+              run: pnpm run build
 
-      # Deploy to LIVE
-      - name: Deploy to Firebase Hosting (LIVE)
+            - name: Upload Built Site
+              uses: actions/upload-artifact@v4
+              with:
+                  name: site
+                  path: apps/client/out
+
+    deploy:
+        needs: build
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          channelId: live
-          projectId: techfolio-5c7d5
+        runs-on: ubuntu-latest
 
-      # Deploy PREVIEW for PRs
-      - name: Deploy to Firebase Hosting (Preview)
+        steps:
+            - name: Download Built Site
+              uses: actions/download-artifact@v4
+              with:
+                  name: site
+                  path: apps/client/out
+
+            - name: Deploy to Firebase Hosting (Live)
+              uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: ${{ secrets.GITHUB_TOKEN }}
+                  firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+                  channelId: live
+                  projectId: techfolio-5c7d5
+
+    preview:
+        needs: build
         if: github.event_name == 'pull_request'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: techfolio-5c7d5
-          channelId: pr-${{ github.event.number }}
-          expires: 7d
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Download built site
+              uses: actions/download-artifact@v4
+              with:
+                  name: site
+                  path: apps/client/out
+
+            - name: Deploy to Firebase Hosting (Preview)
+              uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: ${{ secrets.GITHUB_TOKEN }}
+                  firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+                  projectId: techfolio-5c7d5
+                  channelId: pr-${{ github.event.number }}
+                  expires: 7d
