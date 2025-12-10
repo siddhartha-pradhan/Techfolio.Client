@@ -8,6 +8,7 @@
     "scripts": {
         "build": "turbo run build",
         "lint": "turbo run lint",
+        "deploy": "firebase deploy",
         "format": "prettier --write .",
         "test": "echo 'No tests available here :)'"
     },
