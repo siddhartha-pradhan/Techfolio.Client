@@ -11,20 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
+      - name: Setup PNPM Package Manager
         uses: pnpm/action-setup@v4
         with:
           version: 10.11.0
           run_install: true
 
-      - name: Build project
+      - name: Build Project via Scripts
         run: pnpm run build
 
       # Deploy to LIVE
-      - name: Deploy to Firebase Hosting (live)
+      - name: Deploy to Firebase Hosting (LIVE)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -34,7 +34,7 @@ jobs:
           projectId: techfolio-5c7d5
 
       # Deploy PREVIEW for PRs
-      - name: Deploy to Firebase Hosting (preview)
+      - name: Deploy to Firebase Hosting (Preview)
         if: github.event_name == 'pull_request'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
