@@ -1,8 +1,8 @@
-name: portfolio
+name: techfolio
 services:
-    portfolio-client:
-        container_name: portfolio-client-production
-        image: affinity/portfolio-client:production
+    techfolio-client:
+        container_name: techfolio-client
+        image: affinity/techfolio-client
         build:
             context: .
             dockerfile: Dockerfile
@@ -13,8 +13,8 @@ services:
             - NEXT_TELEMETRY_DISABLED=1
         restart: unless-stopped
         networks:
-            - portfolio-network-production
+            - techfolio-network
 
 networks:
-    portfolio-network-production:
+    techfolio-network:
         driver: bridge

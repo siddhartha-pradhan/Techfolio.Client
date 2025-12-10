@@ -1,7 +1,7 @@
 {
-    "name": "@portfolio/portfolio-api",
+    "name": "@techfolio/techfolio-api",
     "version": "1.0.0",
-    "description": "OpenAPI Generated APIs for Portfolio",
+    "description": "Open API: Auto Generated APIs for techfolio",
     "main": "index.js",
     "scripts": {
         "build": "tsc -p tsconfig.json"

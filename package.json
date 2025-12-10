@@ -1,12 +1,11 @@
 {
-    "name": "@portfolio/root",
+    "name": "@techfolio/root",
     "private": true,
     "type": "module",
     "version": "1.0.0",
-    "description": "Root Package for Portfolio",
+    "description": "Techfolio: Root Package",
     "main": "index.js",
     "scripts": {
-        "dev": "turbo run dev",
         "build": "turbo run build",
         "lint": "turbo run lint",
         "format": "prettier --write .",

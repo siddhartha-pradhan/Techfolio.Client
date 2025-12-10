@@ -5,7 +5,7 @@
             "path": "./apps/client"
         },
         {
-            "path": "./packages/portfolio-api"
+            "path": "./packages/techfolio-api"
         }
     ]
 }
