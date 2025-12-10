@@ -32,6 +32,7 @@ import { Ability } from '@/application/models/dota/Ability';
 import { Achievement } from '@/application/models/Achievement';
 import { MatchHistory } from '@/application/models/dota/MatchHistory';
 import { GenericService } from '@/application/services/GenericService';
+import SurpriseLootSection from '@/app/modules/sections/SurpriseLootSection';
 //#endregion
 
 // Small helper wrapper for scroll-in animations
@@ -299,7 +300,6 @@ export default function Portfolio() {
                 setShowDogsSection={setShowDogsSection}
             />
 
-            {/* Sections with scroll-in animations */}
             <AnimatedSection>
                 <PersonalSection
                     gameState={gameState}
@@ -353,6 +353,8 @@ export default function Portfolio() {
                     personalInformation={personalInformation}
                 />
             </AnimatedSection>
+
+            <SurpriseLootSection selectedHero={selectedHero} />
 
             <Footer
                 gameState={gameState}

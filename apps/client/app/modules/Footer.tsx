@@ -3,6 +3,7 @@
 import React from 'react';
 import { Hero } from '@/application/models/dota/Hero';
 import { State } from '@/application/models/dota/State';
+import RoshanEasterEgg from '@/components/application/RoshanEasterEgg';
 
 type FooterProps = {
     gameState: State;
@@ -10,6 +11,7 @@ type FooterProps = {
     isDarkMode: boolean;
     personalInformation: PersonalInformation;
 };
+
 const Footer = ({ gameState, selectedHero, isDarkMode, personalInformation }: FooterProps) => {
     return (
         <footer
@@ -30,8 +32,9 @@ const Footer = ({ gameState, selectedHero, isDarkMode, personalInformation }: Fo
                         className="font-mono text-xs lg:text-sm"
                         style={{ color: selectedHero.theme.primary }}
                     >
-                        MATCH.UPTIME: {Math.floor(gameState.gameTime / 60)}:
-                        {String(gameState.gameTime % 60).padStart(2, '0')}
+                        MATCH UPTIME: {Math.floor(gameState.gameTime / 60)}:
+                        {String(gameState.gameTime % 60).padStart(2, '0')}{' '}
+                        <RoshanEasterEgg selectedHero={selectedHero} />
                     </div>
                 </div>
             </div>

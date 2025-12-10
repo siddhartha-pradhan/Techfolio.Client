@@ -1,12 +1,14 @@
 'use client';
 
-import React, { JSX } from 'react';
 import { Play } from 'lucide-react';
+import { useInView } from 'framer-motion';
+import React, { JSX, useRef } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Hero } from '@/application/models/dota/Hero';
 import { Project } from '@/application/models/Project';
+import RampageOverlay from '@/components/application/RampageOverlay';
 import { GenericService } from '@/application/services/GenericService';
 
 type ProjectsSectionProps = {
@@ -24,8 +26,16 @@ const ProjectsSection = ({
     getDifficultyColor,
     getProjectIcon,
 }: ProjectsSectionProps) => {
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const isInView = useInView(sectionRef, {
+        amount: 0.4,
+        once: true,
+    });
+
     return (
-        <section className="py-16 lg:py-20">
+        <section ref={sectionRef} className="py-16 lg:py-20">
+            <RampageOverlay trigger={isInView} />
+
             <div className="container mx-auto px-4 lg:px-6">
                 <div className="mb-12 lg:mb-16 text-center">
                     <h2 className="text-3xl lg:text-4xl font-black mb-4">
@@ -51,17 +61,12 @@ const ProjectsSection = ({
                                 ),
                             }}
                         >
-                            {/* LEGENDARY GLOW */}
                             {project.difficulty === 'Legendary' && (
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 animate-pulse" />
                             )}
 
                             <div className="p-6 lg:p-8 relative z-10">
-                                {/* --------------------------------------------- */}
-                                {/* ROW 1 — Left: index + icon + name, Right: preview + difficulty */}
-                                {/* --------------------------------------------- */}
                                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-4">
-                                    {/* LEFT SIDE */}
                                     <div className="flex items-center gap-3 flex-wrap">
                                         <div
                                             className="text-xl lg:text-2xl font-black"
@@ -85,7 +90,6 @@ const ProjectsSection = ({
                                         </h3>
                                     </div>
 
-                                    {/* RIGHT SIDE */}
                                     <div className="flex items-center gap-2 flex-shrink-0">
                                         {project.preview && (
                                             <div className="text-2xl">{project.preview}</div>
@@ -108,12 +112,7 @@ const ProjectsSection = ({
                                     </div>
                                 </div>
 
-                                {/* --------------------------------------------- */}
-                                {/* ROW 2 — Left: meta + dotaEquivalent, Right: INSPECT (lg only) */}
-                                {/* --------------------------------------------- */}
                                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
-                                    {/* LEFT SIDE */}
-
                                     <div>
                                         <div className="text-xs lg:text-sm opacity-70 font-mono break-words">
                                             TYPE: {project.type} | LINES: {project.lines} | COMMITS:{' '}
@@ -136,7 +135,6 @@ const ProjectsSection = ({
                                         )}
                                     </div>
 
-                                    {/* RIGHT SIDE — INSPECT BUTTON */}
                                     <div className="flex lg:justify-end">
                                         <Button
                                             variant="ghost"
@@ -157,12 +155,10 @@ const ProjectsSection = ({
                                     </div>
                                 </div>
 
-                                {/* DESCRIPTION */}
                                 <p className="mb-6 leading-relaxed text-sm lg:text-base opacity-80">
                                     {project.description}
                                 </p>
 
-                                {/* TECH TAGS */}
                                 <div className="flex flex-wrap gap-2">
                                     {project.tech.map((tech) => (
                                         <span

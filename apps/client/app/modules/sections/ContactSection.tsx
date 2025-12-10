@@ -28,11 +28,12 @@ const ContactSection = ({ isDarkMode, selectedHero, personalInformation }: Conta
                             </span>
                             <span className="block lg:hidden text-3xl leading-tight">
                                 <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>{' '}
+                                <br />
                                 ESTABLISH
                                 <br />
-                                <span className="ml-6 mb-5">.</span>
+                                <span>.</span>
                                 <br />
-                                <span className="mt-5 ml-6">CONNECTION</span>
+                                <span>CONNECTION</span>
                             </span>
                         </h2>
                         <div className="text-sm lg:text-base opacity-70">

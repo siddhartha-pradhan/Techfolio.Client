@@ -33,12 +33,12 @@ const AchievementsSection = ({
                             ACHIEVEMENTS.UNLOCKED
                         </span>
                         <span className="block lg:hidden text-3xl leading-tight">
-                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span>{' '}
+                            <span style={{ color: selectedHero.theme.primary }}>{'>'}</span> <br />
                             ACHIEVEMENTS
                             <br />
-                            <span className="ml-6 mb-5">.</span>
+                            <span>.</span>
                             <br />
-                            <span className="mt-5 ml-6">UNLOCKED</span>
+                            <span>UNLOCKED</span>
                         </span>
                     </h2>
                     <div className="text-sm lg:text-base opacity-70">
