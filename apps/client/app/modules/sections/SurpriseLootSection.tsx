@@ -105,6 +105,7 @@ const SurpriseLootSection = ({ selectedHero }: Props) => {
                                         <button
                                             className="mt-3 text-xs underline"
                                             onClick={() => {
+                                                setSelected(null);
                                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                                             }}
                                         >

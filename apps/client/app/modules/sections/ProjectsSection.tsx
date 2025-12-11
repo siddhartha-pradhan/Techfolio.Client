@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Hero } from '@/application/models/dota/Hero';
 import { Project } from '@/application/models/Project';
-import RampageOverlay from '@/components/application/RampageOverlay';
 import { GenericService } from '@/application/services/GenericService';
 
 type ProjectsSectionProps = {
@@ -34,7 +33,8 @@ const ProjectsSection = ({
 
     return (
         <section ref={sectionRef} className="py-16 lg:py-20 relative">
-            <RampageOverlay trigger={inView} />
+            {/* TODO: Fix for Rampage Overlay */}
+            {/* <RampageOverlay trigger={inView} /> */}
 
             <div className="container mx-auto px-4 lg:px-6">
                 <div className="mb-12 lg:mb-16 text-center">

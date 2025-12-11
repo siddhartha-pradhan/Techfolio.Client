@@ -1,19 +1,44 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = { trigger: boolean };
 
+const RAMPAGE_DURATION = 3;
+
 const RampageOverlay = ({ trigger }: Props) => {
     const [show, setShow] = useState(false);
+    const [remaining, setRemaining] = useState(0);
+    const previousOverflow = useRef<string | null>(null);
 
     useEffect(() => {
-        if (trigger) {
-            setShow(true);
-            const t = setTimeout(() => setShow(false), 5000);
-            return () => clearTimeout(t);
+        if (!trigger) return;
+
+        setShow(true);
+        setRemaining(RAMPAGE_DURATION);
+
+        if (typeof document !== 'undefined') {
+            previousOverflow.current = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
         }
+
+        const hideTimeout = setTimeout(() => {
+            setShow(false);
+        }, RAMPAGE_DURATION * 1000);
+
+        const interval = setInterval(() => {
+            setRemaining((prev) => (prev > 1 ? prev - 1 : 0));
+        }, 1000);
+
+        return () => {
+            clearTimeout(hideTimeout);
+            clearInterval(interval);
+
+            if (typeof document !== 'undefined') {
+                document.body.style.overflow = previousOverflow.current ?? '';
+            }
+        };
     }, [trigger]);
 
     return (
@@ -42,11 +67,14 @@ const RampageOverlay = ({ trigger }: Props) => {
                             stiffness: 260,
                             damping: 18,
                         }}
-                        className="relative text-5xl md:text-7xl font-black text-red-500 drop-shadow-[0_0_30px_rgba(248,113,113,0.9)]"
+                        className="relative text-5xl md:text-7xl font-black text-red-500 drop-shadow-[0_0_30px_rgba(248,113,113,0.9)] text-center"
                     >
                         RAMPAGE!!!
-                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-xs md:text-sm tracking-[0.3em] text-red-200/80">
+                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-full text-xs md:text-sm tracking-[0.3em] text-red-200/80">
                             PROJECT.STREAK
+                        </div>
+                        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[10px] md:text-xs text-red-100/90">
+                            Closing in {remaining}s...
                         </div>
                     </motion.div>
                 </motion.div>
