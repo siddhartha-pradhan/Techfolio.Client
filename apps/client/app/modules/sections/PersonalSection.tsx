@@ -66,28 +66,28 @@ const PersonalSection = ({
                                 </div>
                                 <div className="text-gray-500">{'{'}</div>
                                 <div className="ml-4">
-                                    runTime:{' '}
+                                    RunTime ={' '}
                                     <span style={{ color: selectedHero.theme.accent }}>
                                         {getFullAge(personalInformation.dateOfBirth)}
                                     </span>
                                     ;
                                 </div>
                                 <div className="ml-4">
-                                    location:{' '}
+                                    Location ={' '}
                                     <span style={{ color: selectedHero.theme.accent }}>
                                         "{personalInformation.location}"
                                     </span>
                                     ;
                                 </div>
                                 <div className="ml-4">
-                                    company:{' '}
+                                    Company ={' '}
                                     <span style={{ color: selectedHero.theme.accent }}>
                                         "{personalInformation.company}"
                                     </span>
                                     ;
                                 </div>
                                 <div className="ml-4">
-                                    rank:{' '}
+                                    Rank ={' '}
                                     <span style={{ color: selectedHero.theme.accent }}>
                                         "Ancient"
                                     </span>

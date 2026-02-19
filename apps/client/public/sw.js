@@ -1,8 +1,8 @@
 if (!self.define) {
     let e,
         c = {};
-    const s = (s, i) => (
-        (s = new URL(s + '.js', i).href),
+    const s = (s, n) => (
+        (s = new URL(s + '.js', n).href),
         c[s] ||
             new Promise((c) => {
                 if ('document' in self) {
@@ -15,13 +15,13 @@ if (!self.define) {
                 return e;
             })
     );
-    self.define = (i, n) => {
+    self.define = (n, i) => {
         const t = e || ('document' in self ? document.currentScript.src : '') || location.href;
         if (c[t]) return;
         let a = {};
         const r = (e) => s(e, t),
             o = { module: { uri: t }, exports: a, require: r };
-        c[t] = Promise.all(i.map((e) => o[e] || r(e))).then((e) => (n(...e), a));
+        c[t] = Promise.all(n.map((e) => o[e] || r(e))).then((e) => (i(...e), a));
     };
 }
 define(['./workbox-5c0ed218'], function (e) {
@@ -31,14 +31,6 @@ define(['./workbox-5c0ed218'], function (e) {
         e.clientsClaim(),
         e.precacheAndRoute(
             [
-                {
-                    url: '/_next/static/K7BhgGL6mA8QeShjAbz80/_buildManifest.js',
-                    revision: 'a326463c9047197dcf4a54ee587b36ab',
-                },
-                {
-                    url: '/_next/static/K7BhgGL6mA8QeShjAbz80/_ssgManifest.js',
-                    revision: 'b6652df95db52feb4daf4eca35380933',
-                },
                 {
                     url: '/_next/static/chunks/191-aa3bbc097a2ccd9d.js',
                     revision: 'aa3bbc097a2ccd9d',
@@ -64,8 +56,8 @@ define(['./workbox-5c0ed218'], function (e) {
                     revision: '75e2fa0b088b5c98',
                 },
                 {
-                    url: '/_next/static/chunks/app/page-aa20a51a043a6fcb.js',
-                    revision: 'aa20a51a043a6fcb',
+                    url: '/_next/static/chunks/app/page-256e81b02e0a18e2.js',
+                    revision: '256e81b02e0a18e2',
                 },
                 {
                     url: '/_next/static/chunks/framework-6c562198cd4f8865.js',
@@ -107,7 +99,15 @@ define(['./workbox-5c0ed218'], function (e) {
                     url: '/_next/static/chunks/webpack-6a82b9a3f57ab474.js',
                     revision: '6a82b9a3f57ab474',
                 },
-                { url: '/_next/static/css/0201c6fb06ce7026.css', revision: '0201c6fb06ce7026' },
+                { url: '/_next/static/css/dc748099e5e4ac5e.css', revision: 'dc748099e5e4ac5e' },
+                {
+                    url: '/_next/static/nz2xslS_k_LaOxyajg7IX/_buildManifest.js',
+                    revision: 'a326463c9047197dcf4a54ee587b36ab',
+                },
+                {
+                    url: '/_next/static/nz2xslS_k_LaOxyajg7IX/_ssgManifest.js',
+                    revision: 'b6652df95db52feb4daf4eca35380933',
+                },
                 { url: '/favicon.png', revision: 'a7200bf7ac1f4357fd9f5d57fece55dd' },
                 { url: '/icons/192x192.png', revision: '259aa264e8da70175f03e1e78f495685' },
                 { url: '/icons/512x512.png', revision: 'a7c4846310a7506d3fdb60caabfd9406' },
@@ -126,7 +126,7 @@ define(['./workbox-5c0ed218'], function (e) {
                 cacheName: 'start-url',
                 plugins: [
                     {
-                        cacheWillUpdate: async ({ request: e, response: c, event: s, state: i }) =>
+                        cacheWillUpdate: async ({ request: e, response: c, event: s, state: n }) =>
                             c && 'opaqueredirect' === c.type
                                 ? new Response(c.body, {
                                       status: 200,
