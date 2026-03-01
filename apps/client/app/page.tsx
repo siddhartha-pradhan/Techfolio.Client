@@ -113,7 +113,7 @@ export default function Portfolio() {
                     setSelectedHero(hero);
                 }
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('An exception occurred while loading data.', error);
             }
         };
 

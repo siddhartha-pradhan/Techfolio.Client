@@ -1255,7 +1255,7 @@ export class GenericService {
             gpm: 650,
             xpm: 580,
             gameTime: 2520,
-            isPlaying: false,
+            isPlaying: true,
             currentMatch: {
                 duration: '42:15',
                 kda: '12/3/8',

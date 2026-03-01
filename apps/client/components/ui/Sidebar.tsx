@@ -6,7 +6,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/utility/GenericUtility';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { useIsMobile } from '@/hooks/UseMobile';
+import { useIsMobile } from '@/hooks/useMobile';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Separator } from '@/components/ui/Separator';
 import { Sheet, SheetContent } from '@/components/ui/Sheet';
