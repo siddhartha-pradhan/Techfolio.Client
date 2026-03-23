@@ -11,6 +11,7 @@ export type Dog = {
     personality: string[];
     specialMemory: string;
     status: 'alive' | 'passed';
+    signatureBehavior?: string;
     dotaHeroEquivalent?: string;
     favoriteActivities: string[];
 };

@@ -1,8 +1,8 @@
 'use client';
 
-import React, { JSX, useRef } from 'react';
 import { Play } from 'lucide-react';
 import { useInView } from 'framer-motion';
+import React, { JSX, useRef } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';

@@ -46,13 +46,6 @@ const SkillsSection = ({ selectedHero, isDarkMode, featuredSkills }: SkillSectio
                                     : 'rgba(255,255,255,0.5)',
                                 borderColor: selectedHero.theme.primary,
                             }}
-                            onClick={() => {
-                                if (skill.cooldown && skill.cooldown > 0) {
-                                    console.log(
-                                        `Casting ${skill.name}! Cooldown: ${skill.cooldown}s, Mana: ${skill.manaCost}`,
-                                    );
-                                }
-                            }}
                         >
                             <div className="text-3xl lg:text-4xl mb-3 lg:mb-4 text-center">
                                 {skill.icon}

@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
     compress: true,
 
     typescript: {
-        ignoreBuildErrors: true,
+        ignoreBuildErrors: false,
     },
 
     webpack: (config) => {

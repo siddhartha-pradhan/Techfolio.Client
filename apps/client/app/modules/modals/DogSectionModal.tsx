@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Dog } from '@/application/models/Dog';
@@ -28,13 +29,14 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                         animate={{ scale: 1 }}
                         exit={{ scale: 0.9 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-gray-900 border-2 border-pink-400 rounded-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto"
+                        className="bg-[#101827]/95 backdrop-blur-md border-2 border-pink-400/80 rounded-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(244,114,182,0.15)]"
                     >
                         <div className="flex items-center justify-between p-6 border-b border-pink-400">
-                            <h2 className="text-3xl font-black text-pink-400">
+                            <h2 id="dogs-modal-title" className="text-3xl font-black text-pink-400">
                                 🐕 MY BELOVED PACK
                             </h2>
                             <button
+                                aria-label="Close dogs section"
                                 onClick={() => setShowDogsSection(false)}
                                 className="text-gray-400 hover:text-white"
                             >
@@ -55,140 +57,165 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {dogs.map((dog) => (
-                                    <div
+                                {dogs.map((dog, index) => (
+                                    <motion.div
                                         key={dog.id}
-                                        className={`border-2 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${
+                                        initial={{ opacity: 0, y: 24 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.08 }}
+                                        className={`border-2 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(244,114,182,0.18)] ${
                                             dog.status === 'passed'
                                                 ? 'border-gray-500 bg-gray-800/50'
                                                 : 'border-pink-400 bg-gray-800/30'
                                         }`}
                                     >
-                                        <div className="relative h-64 overflow-hidden">
-                                            <img
-                                                src={dog.image || '/placeholder.svg'}
-                                                alt={dog.name}
-                                                className="w-full h-full object-cover"
-                                                crossOrigin="anonymous"
-                                            />
-                                            {dog.status === 'passed' && (
-                                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                                    <div className="text-white text-center">
-                                                        <div className="text-2xl mb-2">👼</div>
-                                                        <div className="text-sm font-bold">
-                                                            Forever in our hearts
+                                        <div
+                                            key={dog.id}
+                                            className={`rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(244,114,182,0.18)] ${
+                                                dog.status === 'passed'
+                                                    ? 'border-gray-500 bg-gray-800/50'
+                                                    : 'border-pink-400 bg-gray-800/30'
+                                            }`}
+                                        >
+                                            <div className="relative h-64 overflow-hidden">
+                                                <div className="relative h-64 overflow-hidden">
+                                                    <Image
+                                                        src={dog.image || '/placeholder.svg'}
+                                                        alt={dog.name}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
+                                                {dog.status === 'passed' && (
+                                                    <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+                                                        <div className="text-white text-center px-4">
+                                                            <div className="text-2xl mb-2">🕊️</div>
+                                                            <div className="text-sm font-bold tracking-wide">
+                                                                Forever in our hearts
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )}
-                                            <div className="absolute top-4 right-4">
-                                                <Badge
-                                                    variant="outline"
-                                                    className={`text-xs ${
-                                                        dog.status === 'passed'
-                                                            ? 'border-gray-400 text-gray-400 bg-black/50'
-                                                            : 'border-pink-400 text-pink-400 bg-black/50'
-                                                    }`}
-                                                >
-                                                    {dog.status === 'alive'
-                                                        ? `${dog.age} years old`
-                                                        : `Passed at ${dog.passedAge}`}
-                                                </Badge>
-                                            </div>
-                                        </div>
-
-                                        <div className="p-6">
-                                            <div className="text-center mb-4">
-                                                <h3
-                                                    className={`text-2xl font-black mb-1 ${
-                                                        dog.status === 'passed'
-                                                            ? 'text-gray-300'
-                                                            : 'text-pink-400'
-                                                    }`}
-                                                >
-                                                    {dog.name}
-                                                </h3>
-                                                <p className="text-sm opacity-70 text-white">
-                                                    {dog.breed}
-                                                </p>
-                                                <div className="flex justify-center gap-2 mt-2">
+                                                )}
+                                                <div className="absolute top-4 right-4">
                                                     <Badge
                                                         variant="outline"
-                                                        className="text-xs text-white"
+                                                        className={`text-xs ${
+                                                            dog.status === 'passed'
+                                                                ? 'border-gray-400 text-gray-400 bg-black/50'
+                                                                : 'border-pink-400 text-pink-400 bg-black/50'
+                                                        }`}
                                                     >
-                                                        {dog.dateJoined &&
-                                                            `Joined ${dog.dateJoined}`}
+                                                        {dog.status === 'alive'
+                                                            ? `${dog.age} years old`
+                                                            : `Passed at ${dog.passedAge}`}
                                                     </Badge>
-                                                    {dog.datePassed && (
+                                                </div>
+                                            </div>
+
+                                            <div className="p-6">
+                                                <div className="text-center mb-4">
+                                                    <h3
+                                                        className={`text-2xl font-black mb-1 ${
+                                                            dog.status === 'passed'
+                                                                ? 'text-gray-300'
+                                                                : 'text-pink-400'
+                                                        }`}
+                                                    >
+                                                        {dog.name}
+                                                    </h3>
+                                                    <p className="text-sm opacity-70 text-white">
+                                                        {dog.breed}
+                                                    </p>
+                                                    <div className="flex justify-center gap-2 mt-2">
                                                         <Badge
                                                             variant="outline"
-                                                            className="text-xs border-gray-500 text-gray-400"
+                                                            className="text-xs text-white"
                                                         >
-                                                            {dog.datePassed}
+                                                            {dog.dateJoined &&
+                                                                `Joined ${dog.dateJoined}`}
                                                         </Badge>
-                                                    )}
-                                                </div>
-                                            </div>
-
-                                            <p className="text-sm opacity-80 mb-4 text-center leading-relaxed text-white">
-                                                {dog.description}
-                                            </p>
-
-                                            <div className="mb-4">
-                                                <div className="text-xs font-bold mb-2 text-pink-400">
-                                                    PERSONALITY:
-                                                </div>
-                                                <div className="flex flex-wrap gap-1">
-                                                    {dog.personality.map((trait) => (
-                                                        <span
-                                                            key={trait}
-                                                            className="px-2 py-1 bg-pink-400/20 border border-pink-400/30 rounded text-white text-xs"
-                                                        >
-                                                            {trait}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-
-                                            <div className="mb-4">
-                                                <div className="text-xs font-bold mb-2 text-pink-400">
-                                                    FAVORITE ACTIVITIES:
-                                                </div>
-                                                <div className="space-y-1">
-                                                    {dog.favoriteActivities.map(
-                                                        (activity, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className="text-xs opacity-70 text-white"
+                                                        {dog.datePassed && (
+                                                            <Badge
+                                                                variant="outline"
+                                                                className="text-xs border-gray-500 text-gray-400"
                                                             >
-                                                                • {activity}
-                                                            </div>
-                                                        ),
-                                                    )}
-                                                </div>
-                                            </div>
-
-                                            {dog.dotaHeroEquivalent && (
-                                                <div className="mb-4 p-3 bg-black/30 rounded">
-                                                    <div className="text-xs font-bold mb-1 text-green-400">
-                                                        DOTA HERO EQUIVALENT:
-                                                    </div>
-                                                    <div className="text-xs opacity-80 text-white">
-                                                        {dog.dotaHeroEquivalent}
+                                                                {dog.datePassed}
+                                                            </Badge>
+                                                        )}
                                                     </div>
                                                 </div>
-                                            )}
 
-                                            <div className="p-3 bg-yellow-400/10 border border-yellow-400/30 rounded">
-                                                <div className="text-xs font-bold mb-1 text-yellow-400">
-                                                    SPECIAL MEMORY:
+                                                <p className="text-sm opacity-80 mb-4 text-center leading-relaxed text-white">
+                                                    {dog.description}
+                                                </p>
+
+                                                <div className="mb-4">
+                                                    <div className="text-xs font-bold mb-2 text-pink-400">
+                                                        PERSONALITY:
+                                                    </div>
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {dog.personality.map((trait) => (
+                                                            <span
+                                                                key={trait}
+                                                                className="px-2 py-1 bg-pink-400/20 border border-pink-400/30 rounded text-white text-xs"
+                                                            >
+                                                                {trait}
+                                                            </span>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                                <div className="text-xs opacity-80 text-white italic">
-                                                    "{dog.specialMemory}"
+
+                                                <div className="mb-4">
+                                                    <div className="text-xs font-bold mb-2 text-pink-400">
+                                                        FAVORITE ACTIVITIES:
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        {dog.favoriteActivities.map(
+                                                            (activity, index) => (
+                                                                <div
+                                                                    key={index}
+                                                                    className="text-xs opacity-70 text-white"
+                                                                >
+                                                                    • {activity}
+                                                                </div>
+                                                            ),
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {dog.signatureBehavior && (
+                                                    <div className="mb-4 p-3 bg-cyan-400/10 border border-cyan-400/30 rounded">
+                                                        <div className="text-xs font-bold mb-1 text-cyan-400">
+                                                            SIGNATURE BEHAVIOR:
+                                                        </div>
+                                                        <div className="text-xs opacity-80 text-white">
+                                                            {dog.signatureBehavior}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {dog.dotaHeroEquivalent && (
+                                                    <div className="mb-4 p-3 bg-black/30 rounded">
+                                                        <div className="text-xs font-bold mb-1 text-green-400">
+                                                            DOTA HERO EQUIVALENT:
+                                                        </div>
+                                                        <div className="text-xs opacity-80 text-white">
+                                                            {dog.dotaHeroEquivalent}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                <div className="p-3 bg-yellow-400/10 border border-yellow-400/30 rounded">
+                                                    <div className="text-xs font-bold mb-1 text-yellow-400">
+                                                        SPECIAL MEMORY:
+                                                    </div>
+                                                    <div className="text-xs opacity-80 text-white italic">
+                                                        "{dog.specialMemory}"
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
 
@@ -198,7 +225,9 @@ const DogSectionModal = ({ dogs, showDogsSection, setShowDogsSection }: DogSecti
                                         PACK PHILOSOPHY
                                     </div>
                                     <div className="text-sm opacity-80 text-white italic">
-                                        "Dogs teach us that the most important things in life aren't
+                                        "Each of them brought a different kind of joy into our home
+                                        — wisdom, love, chaos, comfort, and memories that stay. They
+                                        taught us that the most important things in life aren't
                                         things at all - they're moments of pure joy, unconditional
                                         love, and the simple pleasure of being present with those we
                                         care about."

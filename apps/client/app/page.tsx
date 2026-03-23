@@ -113,7 +113,7 @@ export default function Portfolio() {
                     setSelectedHero(hero);
                 }
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('An exception occurred while loading data.', error);
             }
         };
 
@@ -313,7 +313,6 @@ export default function Portfolio() {
                     isDarkMode={isDarkMode}
                     githubStats={githubStats}
                     selectedHero={selectedHero}
-                    setShowDotaPanel={setShowDotaPanel}
                     personalInformation={personalInformation}
                 />
             </AnimatedSection>
