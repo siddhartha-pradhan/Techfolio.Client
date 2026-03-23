@@ -313,7 +313,6 @@ export default function Portfolio() {
                     isDarkMode={isDarkMode}
                     githubStats={githubStats}
                     selectedHero={selectedHero}
-                    setShowDotaPanel={setShowDotaPanel}
                     personalInformation={personalInformation}
                 />
             </AnimatedSection>

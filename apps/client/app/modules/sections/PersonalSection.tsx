@@ -6,8 +6,7 @@ import { GitHub } from '@/application/models/GitHub';
 import { Hero } from '@/application/models/dota/Hero';
 import { getFullAge } from '@/utility/GenericUtility';
 import { State } from '@/application/models/dota/State';
-import { Linkedin, Terminal, Trophy } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Download, Linkedin, Terminal } from 'lucide-react';
 
 type PersonalSectionProps = {
     gameState: State;
@@ -15,7 +14,6 @@ type PersonalSectionProps = {
     githubStats: GitHub;
     isDarkMode: boolean;
     personalInformation: PersonalInformation;
-    setShowDotaPanel: (showDotaPanel: boolean) => void;
 };
 
 const PersonalSection = ({
@@ -24,7 +22,6 @@ const PersonalSection = ({
     githubStats,
     isDarkMode,
     personalInformation,
-    setShowDotaPanel,
 }: PersonalSectionProps) => {
     return (
         <section className="min-h-screen flex items-center pt-20 lg:pt-24 pb-10 lg:pb-14">
@@ -289,10 +286,15 @@ const PersonalSection = ({
                                                 borderColor: selectedHero.theme.primary,
                                                 color: selectedHero.theme.primary,
                                             }}
-                                            onClick={() => setShowDotaPanel(true)}
+                                            asChild
                                         >
-                                            <Trophy className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
-                                            DOTA PANEL
+                                            <a
+                                                href="/resume/Siddhartha%20Pradhan%20-%20Resume.pdf"
+                                                download="Siddhartha Pradhan - Resume.pdf"
+                                            >
+                                                <Download className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
+                                                RESUME
+                                            </a>
                                         </Button>
                                     </div>
                                 </div>
